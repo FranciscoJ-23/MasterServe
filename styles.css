@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+*{
+    font-family: 'DM Sans', sans-serif;
+}
+
+.body-container{
+    background-image: url(./fondo6.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.titulo-container{
+font-size: 50px;
+text-align: center;
+color: #fff;
+padding-bottom: 20px;
+border-bottom: 4px solid blue;
+}
+
+.login-container{
+    backdrop-filter: blur(8px);
+    width: 400px;
+    padding: 20px;
+    border: 5px solid;
+    border-radius: 5px;
+}
+
+.inputs{
+    width: 350px;
+    padding: 15px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.checkbox-container{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkbox-label{
+    margin-left: 5px;
+}
+
+.forgot-password{
+    text-align: right;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.forgot-password a:hover{
+    color:#ddd
+}
+
+.login-btn{
+    width: 100%;
+    padding: 10px;
+    background-color: blue;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.login-btn:hover{
+    background-color: #003cff;
+    color: #fff;
+}
+
+.register-text{
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 15px;
+}
+
+.register-text:hover{
+    color: #ddd;
+}
+
+.hidden{
+    display: none;
+}
+
+button {
+    border: 2px solid #24b4fb;
+    background-color: #24b4fb;
+    border-radius: 0.9em;
+    padding: 0.8em 1.2em 0.8em 1em;
+    transition: all ease-in-out 0.2s;
+    font-size: 16px;
+   }
+   
+   button span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 600;
+   }
+   
+   button:hover {
+    background-color: #0071e2;
+   }
