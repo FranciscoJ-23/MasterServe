@@ -11,7 +11,7 @@
 <body class="body-container">
     <!--Formulario de registro-->
     <div class="form-container">
-        <form id="registerForm">
+        <form action="be_registro_client.php" method="POST" id="registerForm">
             <span class="title">Registro para clientes</span>
             <br>
             <span class="sub mb">Registrate para empezar a solcitar a servicios</span>
@@ -28,7 +28,7 @@
         </form>
 
         <!--Formulario de incio de sesion-->
-        <form class="hidden" id="loginForm">
+        <form action="be_cliente_lg.php" method="POST" class="hidden" id="loginForm">
             <span class="title">Inicia sesión</span>
             <br>
             <span class="sub mb">Inicia sesión para acceder a la lista de servicios</span>
