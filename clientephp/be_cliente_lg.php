@@ -11,10 +11,9 @@ $validar_login = mysqli_query($conexion, $consulta);
 if (mysqli_num_rows($validar_login) > 0) {
     $datos_cliente = mysqli_fetch_assoc($validar_login);
 
-    echo "ID del usuario desde la base de datos: " . $datos_usuario['id']; // Depuración
-    $_SESSION['id'] = $datos_cliente['id'];
-    $_SESSION['cliente_correo'] = $datos_cliente['cliente_correo'];
-
+    //echo "ID del usuario desde la base de datos: " . $datos_usuario['id']; // Depuración
+    $_SESSION['id_cliente'] = $datos_cliente['id'];
+    $_SESSION['correo'] = $datos_cliente['cliente_correo'];
     //echo "ID del Cliente: " . $_SESSION['id']; // Depuración para ver si se guarda correctamente el id
     header("location: home_cliente.php");
     exit(); // Esto detendrá el script aquí para que puedas ver el echo antes de redirigir

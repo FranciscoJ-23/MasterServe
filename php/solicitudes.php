@@ -2,26 +2,57 @@
 include 'conexion_be.php';
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['usuario_id'])) {
+// Verificar si el usuario ha iniciado sesión como servidor o cliente
+if (!isset($_SESSION['usuario_id']) && !isset($_SESSION['id_cliente'])) {
     header("Location: ../index.php"); // Redirigir si no hay sesión iniciada
     exit();
 }
 
-$id_usuario = $_SESSION['usuario_id'];
+$solicitudes = [];
+$tieneSolicitudes = false;
 
 // Consulta SQL para seleccionar las solicitudes del servidor logueado
-$query = "
-    SELECT s.*, p.titulo
-    FROM solicitudes s
-    INNER JOIN publicaciones p ON s.Id_publicaciones = p.Id
-    WHERE p.id_nombre_completo = $id_usuario
-";
+if (isset($_SESSION['usuario_id'])) {
+    $id_usuario = $_SESSION['usuario_id'];
 
-$resultado = mysqli_query($conexion, $query);
+    $query = "
+        SELECT s.*, p.titulo
+        FROM solicitudes s
+        INNER JOIN publicaciones p ON s.Id_publicaciones = p.Id
+        WHERE p.id_nombre_completo = $id_usuario
+    ";
 
-// Verificar si el servidor tiene alguna solicitud
-$tieneSolicitudes = mysqli_num_rows($resultado) > 0;
+    $resultado = mysqli_query($conexion, $query);
+    $tieneSolicitudes = mysqli_num_rows($resultado) > 0;
+
+    if ($tieneSolicitudes) {
+        while ($solicitud = mysqli_fetch_assoc($resultado)) {
+            $solicitudes[] = $solicitud;
+        }
+    }
+}
+
+// Consulta SQL para seleccionar las solicitudes del cliente logueado
+if (isset($_SESSION['id_cliente'])) {
+    $id_cliente = $_SESSION['id_cliente'];
+
+    $query = "
+        SELECT s.*, p.titulo
+        FROM solicitudes s
+        INNER JOIN publicaciones p ON s.Id_publicaciones = p.Id
+        WHERE s.id_cliente = $id_cliente
+    ";
+
+    $resultado = mysqli_query($conexion, $query);
+    $tieneSolicitudes = mysqli_num_rows($resultado) > 0;
+
+    if ($tieneSolicitudes) {
+        while ($solicitud = mysqli_fetch_assoc($resultado)) {
+            $solicitudes[] = $solicitud;
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -41,17 +72,17 @@ $tieneSolicitudes = mysqli_num_rows($resultado) > 0;
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <?php
         // Iterar sobre cada solicitud y mostrarla en una tarjeta
-        while($solicitud = mysqli_fetch_assoc($resultado)) {
+        foreach($solicitudes as $solicitud) {
         ?>
         <div class="col">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><?= $solicitud['nombre_cliente'] ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?= $solicitud['correo_cliente'] ?></h6>
-                    <p class="card-text"><?= $solicitud['descripcion_cliente'] ?></p>
-                    <p class="card-text"><strong>Dirección:</strong> <?= $solicitud['direccion_cliente'] ?></p>
-                    <p class="card-text"><strong>Teléfono:</strong> <?= $solicitud['telefono_cliente'] ?></p>
-                    <p class="card-text"><strong>Servicio solicitado:</strong> <?= $solicitud['titulo'] ?></p>
+                    <h5 class="card-title"><?= htmlspecialchars($solicitud['nombre_cliente']) ?></h5>
+                    <h6 class="card-subtitle mb-2 text-muted"><?= htmlspecialchars($solicitud['correo_cliente']) ?></h6>
+                    <p class="card-text"><?= htmlspecialchars($solicitud['descripcion_cliente']) ?></p>
+                    <p class="card-text"><strong>Dirección:</strong> <?= htmlspecialchars($solicitud['direccion_cliente']) ?></p>
+                    <p class="card-text"><strong>Teléfono:</strong> <?= htmlspecialchars($solicitud['telefono_cliente']) ?></p>
+                    <p class="card-text"><strong>Servicio solicitado:</strong> <?= htmlspecialchars($solicitud['titulo']) ?></p>
                 </div>
             </div>
         </div>

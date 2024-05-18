@@ -21,7 +21,10 @@
             <input type="email" class="input" placeholder="Correo" name="cliente_correo">
             <input type="password" class="input" placeholder="Contraseña" name="cliente_password">
             <div>
-                <span class="sub">¿Ya tienes una cuenta? <a href="#" onclick="toggleForms()">Inicia sesión</a></span>
+                <span class="sub">¿Ya tienes una cuenta de cliente? <a href="#" onclick="toggleForms()">Inicia sesión</a></span>
+            </div>
+            <div>
+                <span class="sub">Inicia sesión como trabajador <a href="../index.php">Inicia sesión</a></span>
             </div>
 
             <button class="login-btn">Registrar</button>

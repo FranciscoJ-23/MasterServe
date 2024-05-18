@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['usuario_correo'])) {
+if (!isset($_SESSION['usuario_correo']) && !isset($_SESSION['cliente_correo'])) {
     echo '
 
             <script>
@@ -25,6 +25,7 @@ if (!isset($_SESSION['usuario_correo'])) {
 </head>
 
 <body>
+<h1>Bienvenido</h1>
     <div class="text-center">
         <h1>Sesion iniciada </h1>
         <a href="php/cerrar_sesion.php">Cerrar sesion</a>

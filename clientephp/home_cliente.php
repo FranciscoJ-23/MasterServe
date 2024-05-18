@@ -2,12 +2,12 @@
 session_start(); // Iniciar sesión
 
 // Verificar si la variable de sesión está establecida
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION['id_cliente'])) {
     echo "Error: No se ha establecido el ID del cliente en la sesión.";
     exit();
 }
 
-$id_cliente = $_SESSION['id'];
+$id_cliente = $_SESSION['id_cliente'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,5 +19,7 @@ $id_cliente = $_SESSION['id'];
 <body>
     <h1>Bienvenido</h1>
     <p>El ID del cliente es: <?php echo htmlspecialchars($id_cliente); ?></p>
+    <a href="../home.php">Ir a inicio</a>
+
 </body>
 </html>

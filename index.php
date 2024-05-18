@@ -31,7 +31,7 @@ if (isset($_SESSION['usuario_correo'])) {
                 <label for="remember" class="checkbox-label">Recordar</label>
             </div>
             <div class="forgot-password">
-                <a href="#">¿Olvidaste tu contraseña?</a>
+                <a href="clientephp/cliente_login.php">Inicia sesión como cliente</a>
             </div>
             <button type="submit" class="login-btn" id="loginButton">Iniciar Sesión</button>
             <div class="register-text">
