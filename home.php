@@ -1,18 +1,15 @@
 <?php
 session_start();
-if (!isset($_SESSION['usuario_correo']) && !isset($_SESSION['cliente_correo'])) {
+if (!isset($_SESSION['usuario_correo']) && !isset($_SESSION['correo'])) {
     echo '
-
-            <script>
-                alert("Por favor debes iniciar sesión");
-                window.location = "index.php";
-            </scritpt>
-        ';
+        <script>
+            alert("Por favor debes iniciar sesión");
+            window.location = "index.php";
+        </script>
+    ';
     session_destroy();
     die();
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -27,10 +24,10 @@ if (!isset($_SESSION['usuario_correo']) && !isset($_SESSION['cliente_correo'])) 
 <body>
 <h1>Bienvenido</h1>
     <div class="text-center">
-        <h1>Sesion iniciada </h1>
-        <a href="php/cerrar_sesion.php">Cerrar sesion</a>
+        <h1>Sesion iniciada</h1>
+        <a href="php/cerrar_sesion.php">Cerrar sesión</a>
         <br>
-        <a href="php/lista.php">ir a lista</a>
+        <a href="php/lista.php">Ir a lista</a>
         <br>
         <a href="php/solicitudes.php">Solicitudes</a>
         <br>

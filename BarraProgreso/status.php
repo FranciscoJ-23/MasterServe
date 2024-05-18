@@ -1,9 +1,31 @@
+<?php
+include '../php/conexion_be.php';
+session_start();
+
+// Verificar si el usuario ha iniciado sesión como servidor o cliente
+if (!isset($_SESSION['usuario_id']) && !isset($_SESSION['id_cliente'])) {
+    header("Location: ../index.php"); // Redirigir si no hay sesión iniciada
+    exit();
+}
+
+$id_solicitud = $_GET['id_solicitud'];
+
+// Obtener los datos actuales de la solicitud
+$query = "SELECT * FROM solicitudes WHERE id = $id_solicitud";
+$result = mysqli_query($conexion, $query);
+$solicitud = mysqli_fetch_assoc($result);
+
+if (!$solicitud) {
+    echo 'Solicitud no encontrada.';
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" href="status.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="jquery-3.6.0.min.js"></script>
     <title>Progress Bar</title>
 </head>
@@ -16,8 +38,8 @@
                     <h2></h2>
                     <div class="progress-outer">
                         <div class="progress" id="progress-bar">
-                            <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:80%; box-shadow:-1px 10px 10px rgba(91, 192, 222, 0.7);"></div>
-                            <div class="progress-value">80%</div>
+                            <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:<?= $solicitud['progreso'] ?>%; box-shadow:-1px 10px 10px rgba(91, 192, 222, 0.7);"></div>
+                            <div class="progress-value"><?= $solicitud['progreso'] ?>%</div>
                         </div>
                     </div>
                 </div>
@@ -29,7 +51,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h2>Texto del Servidor</h2>
-                <textarea class="form-control" rows="5" id="texto-servidor"></textarea>
+                <textarea class="form-control" rows="5" id="texto-servidor"><?= htmlspecialchars($solicitud['mensaje']) ?></textarea>
             </div>
         </div>
     </div>
@@ -38,25 +60,26 @@
         <button class="comic-button" onclick="actualizarBarra()">Actualizar</button>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         function actualizarBarra() {
-            // Genera un nuevo valor de progreso aleatorio (para este ejemplo)
-            var nuevoProgreso = Math.floor(Math.random() * 101); // Genera un número entre 0 y 100
-            
-            // Actualiza el ancho de la barra de progreso
-            var progressBar = document.getElementById("progress-bar");
-            var progressBarInner = progressBar.querySelector(".progress-bar");
-            progressBarInner.style.width = nuevoProgreso + "%";
-            
-            // Actualiza el texto que muestra el progreso
-            var progressValue = progressBar.querySelector(".progress-value");
-            progressValue.innerText = nuevoProgreso + "%";
+            var nuevoProgreso = prompt("Introduce el nuevo progreso (0-100):");
+            var mensaje = document.getElementById("texto-servidor").value;
 
-            // Actualiza el texto del servidor (para este ejemplo, se genera un texto aleatorio)
-            var textoServidor = document.getElementById("texto-servidor");
-            textoServidor.value = "Este es el texto del servidor para la actualización " + nuevoProgreso;
+            if (nuevoProgreso !== null && nuevoProgreso >= 0 && nuevoProgreso <= 100) {
+                // Enviar la solicitud para actualizar el progreso
+                $.post('actualizar_progreso.php', {
+                    id_solicitud: <?= $id_solicitud ?>,
+                    progreso: nuevoProgreso,
+                    mensaje: mensaje
+                }, function(response) {
+                    alert(response);
+                    location.reload(); // Recargar la página para ver los cambios
+                });
+            } else {
+                alert("Introduce un valor válido entre 0 y 100.");
+            }
         }
     </script>
 </body>

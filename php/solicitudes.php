@@ -84,6 +84,7 @@ if (isset($_SESSION['id_cliente'])) {
                     <p class="card-text"><strong>Teléfono:</strong> <?= htmlspecialchars($solicitud['telefono_cliente']) ?></p>
                     <p class="card-text"><strong>Servicio solicitado:</strong> <?= htmlspecialchars($solicitud['titulo']) ?></p>
                 </div>
+                <a href="../BarraProgreso/status.php?id_solicitud=<?= $solicitud['Id'] ?>" class="btn btn-primary">Mostrar seguimiento</a>
             </div>
         </div>
         <?php } ?>
