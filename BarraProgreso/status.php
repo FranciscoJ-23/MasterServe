@@ -51,14 +51,16 @@ if (!$solicitud) {
         <div class="row">
             <div class="col-md-12">
                 <h2>Texto del Servidor</h2>
-                <textarea class="form-control" rows="5" id="texto-servidor"><?= htmlspecialchars($solicitud['mensaje']) ?></textarea>
+                <textarea class="form-control" rows="5" id="texto-servidor" <?php if (!isset($_SESSION['usuario_id'])) { echo 'readonly'; } ?>><?= htmlspecialchars($solicitud['mensaje']) ?></textarea>
             </div>
         </div>
     </div>
 
+    <?php if (isset($_SESSION['usuario_id'])) { ?>
     <div class="text-center">
         <button class="comic-button" onclick="actualizarBarra()">Actualizar</button>
     </div>
+    <?php } ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
