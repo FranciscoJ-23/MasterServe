@@ -149,6 +149,51 @@ if (!$loggedIn) {
                     <div class="card-body">
 
                         <div class="card-title">
+                            <h5>Carpinteria</h5>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 books-col">
+                <div class="card">
+                    <a href="#" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
+                    <img class="card-img-top mx-auto d-block" src="img/otros.png" alt="Card image cap">
+                    <div class="card-body">
+
+                        <div class="card-title">
+                            <h5>Elctricidad</h5>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 books-col">
+                <div class="card">
+                    <a href="#" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
+                    <img class="card-img-top mx-auto d-block" src="img/otros.png" alt="Card image cap">
+                    <div class="card-body">
+
+                        <div class="card-title">
+                            <h5>Instalaciones</h5>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 books-col">
+                <div class="card">
+                    <a href="#" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
+                    <img class="card-img-top mx-auto d-block" src="img/otros.png" alt="Card image cap">
+                    <div class="card-body">
+
+                        <div class="card-title">
                             <h5>Otros</h5>
 
                         </div>
