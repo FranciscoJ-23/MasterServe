@@ -15,7 +15,7 @@ if (mysqli_num_rows($validar_login) > 0) {
     $_SESSION['id_cliente'] = $datos_cliente['id'];
     $_SESSION['correo'] = $datos_cliente['cliente_correo'];
     //echo "ID del Cliente: " . $_SESSION['id']; // Depuración para ver si se guarda correctamente el id
-    header("location: home_cliente.php");
+    header("location: ../home.php");
     exit(); // Esto detendrá el script aquí para que puedas ver el echo antes de redirigir
    
 } else {
