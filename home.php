@@ -19,10 +19,18 @@ if (!$loggedIn) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <title>MasterServices</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+
     <link rel="stylesheet" href="css/reset.min.css" />
     <link rel="stylesheet" href="css/header.css" />
     <link rel="stylesheet" href="css/header-14.css" />
@@ -30,7 +38,7 @@ if (!$loggedIn) {
         document.addEventListener('DOMContentLoaded', (event) => {
             // Obtener el estado de inicio de sesión del servidor
             const loggedIn = <?php echo json_encode($loggedIn); ?>;
-            
+
             if (loggedIn) {
                 document.getElementById('auth-links').innerHTML = `
                     <a href="php/cerrar_sesion.php" class="button">Cerrar sesión</a>
@@ -39,6 +47,7 @@ if (!$loggedIn) {
         });
     </script>
 </head>
+
 <body>
     <!-- Header Start -->
     <header class="site-header">
@@ -67,9 +76,9 @@ if (!$loggedIn) {
                             menu
                         </button>
                         <ul class="nav__wrapper">
-                            <li class="nav__item"><a href="home.php">Home</a></li>
+                            <li class="nav__item"><a href="home.php">Inicio</a></li>
                             <li class="nav__item"><a href="#">Nosotros</a></li>
-                            <li class="nav__item"><a href="php/lista.php">Servicios</a></li>
+                            <li class="nav__item"><a href="php/lista.php">Lista de servicios</a></li>
                             <li class="nav__item"><a href="php/solicitudes.php">Solicitudes</a></li>
                         </ul>
                     </nav>
@@ -78,7 +87,77 @@ if (!$loggedIn) {
         </div>
     </header>
     <!-- Header End -->
+    <!-- Inicio del contenido-->
+    <div class="container">
+        <div class="row books-row">
 
+            <div class="col-4 books-col">
+                <div class="card">
+                    <a href="plomeria.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
+
+                    <img class="card-img-top mx-auto d-block" src="img/Plomeria.png" alt="Card image cap">
+                    <div class="card-body">
+
+                        <div class="card-title">
+                            <h5>Plomeria</h5>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 books-col">
+                <div class="card">
+                    <a href="#" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
+
+                    <img class="card-img-top mx-auto d-block" src="img/limpieza.jpg" alt="Card image cap">
+                    <div class="card-body">
+
+                        <div class="card-title">
+                            <h5>Limpieza</h5>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 books-col">
+                <div class="card">
+                    <a href="#" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
+
+                    <img class="card-img-top mx-auto d-block" src="img/remodelacion.jpg" alt="Card image cap">
+                    <div class="card-body">
+
+                        <div class="card-title">
+                            <h5>Remodelacion</h5>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 books-col">
+                <div class="card">
+                    <a href="#" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
+                    <img class="card-img-top mx-auto d-block" src="img/otros.png" alt="Card image cap">
+                    <div class="card-body">
+
+                        <div class="card-title">
+                            <h5>Otros</h5>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <script src="js/header-14.js"></script>
 </body>
+
 </html>
