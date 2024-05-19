@@ -16,7 +16,35 @@ if (!$loggedIn) {
     session_destroy();
     die();
 }
+
+// Obtener el tipo de servicio de la URL
+$tipo_servicio = isset($_GET['servicio']) ? mysqli_real_escape_string($conexion, $_GET['servicio']) : '';
+
+// Construir la consulta SQL basada en si se proporcionó un tipo de servicio o no
+if (!empty($tipo_servicio)) {
+    // Consulta SQL para seleccionar las publicaciones del tipo de servicio especificado
+    $query = "
+    SELECT p.*, u.nombre_completo AS nombre_usuario
+    FROM publicaciones p
+    INNER JOIN usuarios u ON p.id_nombre_completo = u.id
+    WHERE p.servicio_id IN (
+        SELECT id 
+        FROM servicios 
+        WHERE nombre_servicio = '$tipo_servicio'
+    )
+    ";
+} else {
+    // Consulta SQL para seleccionar todas las publicaciones
+    $query = "
+    SELECT p.*, u.nombre_completo AS nombre_usuario
+    FROM publicaciones p
+    INNER JOIN usuarios u ON p.id_nombre_completo = u.id
+    ";
+}
+
+$resultado = $conexion->query($query);
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -170,8 +198,9 @@ if (!$loggedIn) {
     </header>
 
     <div class="container">
-        <h1 class="text-center">Lista de servicios</h1>
-        <div class="button-right">
+    <h1 class="text-center">Lista de servicios</h1>
+    <br>
+    <div class="button-right">
             <?php
             // Mostrar el botón de creación si el usuario ha iniciado sesión como servidor
             if (isset($_SESSION['usuario_correo'])) {
@@ -183,51 +212,28 @@ if (!$loggedIn) {
             }
             ?>
         </div>
-        <div class="search-form">
-            <form action="lista.php" method="GET">
-                <input type="text" name="keyword" placeholder="Buscar por palabra clave">
-                <button type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M15.7 13.3l-3.81-3.83A5.93 5.93 0 0 0 13 6c0-3.31-2.69-6-6-6S1 2.69 1 6s2.69 6 6 6c1.3 0 2.48-.41 3.47-1.11l3.83 3.81c.19.2.45.3.7.3.25 0 .52-.09.7-.3a.996.996 0 0 0 0-1.41v.01zM7 10.7c-2.59 0-4.7-2.11-4.7-4.7 0-2.59 2.11-4.7 4.7-4.7 2.59 0 4.7 2.11 4.7 4.7 0 2.59-2.11 4.7-4.7 4.7z"/></svg>
-                </button>
-            </form>
-        </div>
-        <?php
-        // Obtener la palabra clave de la URL si está presente
-        $keyword = isset($_GET['keyword']) ? $_GET['keyword'] : '';
-
-        // Construir la consulta SQL basada en la palabra clave
-        $sql = "SELECT p.*, u.nombre_completo AS nombre_usuario 
-                FROM publicaciones p 
-                INNER JOIN usuarios u ON p.id_nombre_completo = u.id";
-
-        if (!empty($keyword)) {
-            // Agregar condición WHERE para filtrar por palabra clave
-            $sql .= " WHERE titulo LIKE '%$keyword%' OR descripcion LIKE '%$keyword%'";
-        }
-
-        $resultado = $conexion->query($sql);
-        while ($datos = $resultado->fetch_object()) { ?>
-            <div class="service-container">
-                <div class="service-details">
-                    <h2><?= htmlspecialchars($datos->titulo) ?></h2>
-                    <p><?= htmlspecialchars($datos->descripcion) ?></p>
-                    <p><?= htmlspecialchars($datos->nombre_usuario) ?></p>
-                    <p><?= htmlspecialchars($datos->telefono) ?></p>
-                </div>
-                <div class="service-actions">
-                    <?php
-                    // Ocultar el botón de solicitar si el usuario ha iniciado sesión como servidor
-                    if (!isset($_SESSION['usuario_correo'])) {
-                        echo '<a href="enviodecorreo.php?id_publicacion=' . htmlspecialchars($datos->Id) . '">';
-                        echo '<button>Solicitar</button>';
-                        echo '</a>';
-                    }
-                    ?>
-                </div>
+    <?php while ($datos = $resultado->fetch_object()) { ?>
+        <div class="service-container">
+            <div class="service-details">
+                <h2><?= htmlspecialchars($datos->titulo) ?></h2>
+                <p><?= htmlspecialchars($datos->descripcion) ?></p>
+                <p><?= htmlspecialchars($datos->nombre_usuario) ?></p>
+                <p><?= htmlspecialchars($datos->telefono) ?></p>
             </div>
-        <?php }
-        ?>
-    </div>
+            <div class="service-actions">
+                <?php
+                // Ocultar el botón de solicitar si el usuario ha iniciado sesión como servidor
+                if (!isset($_SESSION['usuario_correo'])) {
+                    echo '<a href="enviodecorreo.php?id_publicacion=' . htmlspecialchars($datos->Id) . '">';
+                    echo '<button>Solicitar</button>';
+                    echo '</a>';
+                }
+                ?>
+            </div>
+        </div>
+    <?php } ?>
+</div>
+
     <footer>
         <div class="container__footer">
             <p>Todos los derechos reservados © 2024 <b>MasterServices</b></p>
