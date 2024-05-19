@@ -145,7 +145,7 @@ if (isset($_SESSION['id_cliente'])) {
                     <div class="logo">
                         <img src="../img/MasterServicesLogo.png" alt="Logo" class="logo-img">
                     </div>
-                    <a href="home.php" class="brand">MasterServices</a>
+                    <a href="../home.php" class="brand">MasterServices</a>
                 </div>
                 <div class="site-header__end top" id="auth-links">
                     <a href="index.php">Acceder</a>
@@ -162,7 +162,7 @@ if (isset($_SESSION['id_cliente'])) {
                         </button>
                         <ul class="nav__wrapper">
                             <li class="nav__item"><a href="../home.php">Inicio</a></li>
-                            <li class="nav__item"><a href="#">Nosotros</a></li>
+                            <li class="nav__item"><a href="../nosotros.php">Nosotros</a></li>
                             <li class="nav__item"><a href="lista.php">Lista de servicios</a></li>
                             <li class="nav__item"><a href="solicitudes.php">Solicitudes</a></li>
                         </ul>

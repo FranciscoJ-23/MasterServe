@@ -80,7 +80,7 @@ if (!$loggedIn) {
                         </button>
                         <ul class="nav__wrapper">
                             <li class="nav__item"><a href="home.php">Inicio</a></li>
-                            <li class="nav__item"><a href="#">Nosotros</a></li>
+                            <li class="nav__item"><a href="nosotros.php">Nosotros</a></li>
                             <li class="nav__item"><a href="php/lista.php">Lista de servicios</a></li>
                             <li class="nav__item"><a href="php/solicitudes.php">Solicitudes</a></li>
                         </ul>
@@ -96,7 +96,7 @@ if (!$loggedIn) {
             <div class="col-4 books-col">
                 <div class="card">
                     <a href="php/lista.php?servicio=plomeria" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
-                    <img class="card-img-top mx-auto d-block" src="img/Plomeria.png" alt="Card image cap">
+                    <img class="card-img-top mx-auto d-block" src="img/plumer.jpg" alt="Card image cap">
                     <div class="card-body">
                         <div class="card-title">
                             <h5>Plomeria</h5>
@@ -129,7 +129,7 @@ if (!$loggedIn) {
             <div class="col-4 books-col">
                 <div class="card">
                     <a href="php/lista.php?servicio=carpinteria" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
-                    <img class="card-img-top mx-auto d-block" src="img/otros.png" alt="Card image cap">
+                    <img class="card-img-top mx-auto d-block" src="img/carpinteria.jpg" alt="Card image cap">
                     <div class="card-body">
                         <div class="card-title">
                             <h5>Carpinteria</h5>
@@ -140,7 +140,7 @@ if (!$loggedIn) {
             <div class="col-4 books-col">
                 <div class="card">
                     <a href="php/lista.php?servicio=electricidad" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
-                    <img class="card-img-top mx-auto d-block" src="img/otros.png" alt="Card image cap">
+                    <img class="card-img-top mx-auto d-block" src="img/electrics.jpg" alt="Card image cap">
                     <div class="card-body">
                         <div class="card-title">
                             <h5>Electricidad</h5>
@@ -151,7 +151,7 @@ if (!$loggedIn) {
             <div class="col-4 books-col">
                 <div class="card">
                     <a href="php/lista.php?servicio=instalaciones" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
-                    <img class="card-img-top mx-auto d-block" src="img/otros.png" alt="Card image cap">
+                    <img class="card-img-top mx-auto d-block" src="img/instalac.jpg" alt="Card image cap">
                     <div class="card-body">
                         <div class="card-title">
                             <h5>Instalaciones</h5>
@@ -161,8 +161,19 @@ if (!$loggedIn) {
             </div>
             <div class="col-4 books-col">
                 <div class="card">
+                    <a href="php/lista.php?servicio=construccion" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
+                    <img class="card-img-top mx-auto d-block" src="img/construc.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <div class="card-title">
+                            <h5>Construcción</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 books-col">
+                <div class="card">
                     <a href="php/lista.php?servicio=otros" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></a>
-                    <img class="card-img-top mx-auto d-block" src="img/otros.png" alt="Card image cap">
+                    <img class="card-img-top mx-auto d-block" src="img/otros.jpg" alt="Card image cap">
                     <div class="card-body">
                         <div class="card-title">
                             <h5>Otros</h5>
