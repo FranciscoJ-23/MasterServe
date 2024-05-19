@@ -60,7 +60,10 @@ if (!$loggedIn) {
                     </ul>
                 </div>
                 <div class="site-header__middle">
-                    <a href="#" class="brand">MasterServices</a>
+                    <div class="logo">
+                        <img src="img/MasterServicesLogo.png" alt="Logo" class="logo-img">
+                    </div>
+                    <a href="home.php" class="brand">MasterServices</a>
                 </div>
                 <div class="site-header__end top" id="auth-links">
                     <a href="index.php">Acceder</a>
@@ -158,6 +161,11 @@ if (!$loggedIn) {
         </div>
     </div>
     <script src="js/header-14.js"></script>
+    <footer>
+        <div class="container__footer">
+            <p>Todos los derechos reservados © 2024 <b>MasterServices</b></p>
+        </div>
+    </footer>
 </body>
 
 </html>

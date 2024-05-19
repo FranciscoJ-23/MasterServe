@@ -301,8 +301,22 @@
         padding: 20px;
       }
       
-      .company-logo {
-        max-width: 100%;
-        height: auto;
-      }
+      .logo {
+        display: inline-block; /* Para que el logo no se salga del flujo del texto */
+        margin-right: 1px; /* Ajusta el margen derecho según sea necesario */
+    }
+    
+    .logo-img {
+        height: 30px; /* Ajusta la altura del logo según sea necesario */
+        width: auto; /* Para mantener la proporción de la imagen */
+    }
+    footer{
+      width: 100%;
+      padding: 50px 0px;
+      background-color: #c7f2ff;
+      background-size: cover;
       
+  }
+  .container__footer{
+text-align: center;
+  }
