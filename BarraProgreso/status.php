@@ -46,6 +46,7 @@ if (!$solicitud) {
     <link rel="stylesheet" href="../css/reset.min.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/header-14.css" />
+    <link rel="stylesheet" href="status.css">
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             // Obtener el estado de inicio de sesión del servidor
@@ -146,7 +147,7 @@ if (!$solicitud) {
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <h2>Texto del Servidor</h2>
+                <h2 style="color: black;">Notificaciones del servicio</h2>
                 <textarea class="form-control" rows="5" id="texto-servidor" <?php if (!isset($_SESSION['usuario_id'])) { echo 'readonly'; } ?>><?= htmlspecialchars($solicitud['mensaje']) ?></textarea>
             </div>
         </div>
@@ -180,6 +181,7 @@ if (!$solicitud) {
             }
         }
     </script>
+    <br>
     <footer>
         <div class="container__footer">
             <p>Todos los derechos reservados © 2024 <b>MasterServices</b></p>

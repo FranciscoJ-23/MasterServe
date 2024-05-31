@@ -77,7 +77,8 @@ $resultado = $conexion->query($query);
         });
     </script>
     <style>
-        html, body {
+        html,
+        body {
             height: 100%;
             margin: 0;
             display: flex;
@@ -151,7 +152,6 @@ $resultado = $conexion->query($query);
             background-color: #4C51BF;
             transform: scale(1.05);
         }
-
     </style>
 </head>
 
@@ -186,6 +186,7 @@ $resultado = $conexion->query($query);
                             menu
                         </button>
                         <ul class="nav__wrapper">
+
                             <li class="nav__item"><a href="../home.php">Inicio</a></li>
                             <li class="nav__item"><a href="../nosotros.php">Nosotros</a></li>
                             <li class="nav__item"><a href="lista.php">Lista de servicios</a></li>
@@ -198,9 +199,9 @@ $resultado = $conexion->query($query);
     </header>
 
     <div class="container">
-    <h1 class="text-center">Lista de servicios</h1>
-    <br>
-    <div class="button-right">
+        <h1 class="text-center">Lista de servicios</h1>
+        <br>
+        <div class="button-right">
             <?php
             // Mostrar el botón de creación si el usuario ha iniciado sesión como servidor
             if (isset($_SESSION['usuario_correo'])) {
@@ -212,27 +213,27 @@ $resultado = $conexion->query($query);
             }
             ?>
         </div>
-    <?php while ($datos = $resultado->fetch_object()) { ?>
-        <div class="service-container">
-            <div class="service-details">
-                <h2><?= htmlspecialchars($datos->titulo) ?></h2>
-                <p><?= htmlspecialchars($datos->descripcion) ?></p>
-                <p><?= htmlspecialchars($datos->nombre_usuario) ?></p>
-                <p><?= htmlspecialchars($datos->telefono) ?></p>
+        <?php while ($datos = $resultado->fetch_object()) { ?>
+            <div class="service-container">
+                <div class="service-details">
+                    <h2><?= htmlspecialchars($datos->titulo) ?></h2>
+                    <p><?= htmlspecialchars($datos->descripcion) ?></p>
+                    <p><?= htmlspecialchars($datos->nombre_usuario) ?></p>
+                    <p><?= htmlspecialchars($datos->telefono) ?></p>
+                </div>
+                <div class="service-actions">
+                    <?php
+                    // Ocultar el botón de solicitar si el usuario ha iniciado sesión como servidor
+                    if (!isset($_SESSION['usuario_correo'])) {
+                        echo '<a href="enviodecorreo.php?id_publicacion=' . htmlspecialchars($datos->Id) . '">';
+                        echo '<button>Solicitar</button>';
+                        echo '</a>';
+                    }
+                    ?>
+                </div>
             </div>
-            <div class="service-actions">
-                <?php
-                // Ocultar el botón de solicitar si el usuario ha iniciado sesión como servidor
-                if (!isset($_SESSION['usuario_correo'])) {
-                    echo '<a href="enviodecorreo.php?id_publicacion=' . htmlspecialchars($datos->Id) . '">';
-                    echo '<button>Solicitar</button>';
-                    echo '</a>';
-                }
-                ?>
-            </div>
-        </div>
-    <?php } ?>
-</div>
+        <?php } ?>
+    </div>
 
     <footer>
         <div class="container__footer">
